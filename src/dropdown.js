@@ -1,23 +1,22 @@
 "use strict";
 
 import "./dropdown.css";
+import domUtility from "./dom.utility.js"
 
 export function dropdown(menuTitle = "Menu", ...menuItems)
 {
-    const divWrapper = document.createElement("div");
-    divWrapper.classList.add("dropdown-wrapper");
+    const divWrapper = domUtility.createDomElement("div");
+    domUtility.addClasses(divWrapper, "dropdown-wrapper");
 
-    const btnDropdown = document.createElement("button");
-    btnDropdown.classList.add("dropdown-button");
-    btnDropdown.innerText = menuTitle;
+    const btnDropdown = domUtility.createDomElement("button", menuTitle);
+    domUtility.addClasses(btnDropdown, "dropdown-button");
 
-    const ulDropdownItems = document.createElement("ul");
-    ulDropdownItems.classList.add("dropdown-items");
+    const ulDropdownItems = domUtility.createDomElement("ul");
+    domUtility.addClasses(ulDropdownItems, "dropdown-items");
 
     menuItems.forEach(item => {
 
-        const liCurrentItem = document.createElement("li");
-        liCurrentItem.innerText = item;
+        const liCurrentItem = domUtility.createDomElement("li", item);
 
         ulDropdownItems.append(liCurrentItem);
     });
