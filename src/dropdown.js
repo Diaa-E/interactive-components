@@ -17,6 +17,7 @@ export function dropdown(options)
         listInvisibleClass: "dropdown-items-invis",
         listItemClasses: ["list-item"],
         addIndex: true,
+        onClick: true,
         eventType: "click",
         eventFunction: () => {},
         ...options
@@ -27,7 +28,8 @@ export function dropdown(options)
     domUtility.addClasses(divWrapper, options.wrapperClasses);
     domUtility.setElementAttributes(divWrapper, ["id"], [options.menuId]);
     
-    divWrapper.addEventListener("mouseover", () => {
+    //choose whether to drop menu on click or hover
+    divWrapper.addEventListener(options.onClick? "click":"mouseover", () => {
         domUtility.removeClasses(document.getElementById(listId), [options.listInvisibleClass])
     });
 
