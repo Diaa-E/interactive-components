@@ -49,7 +49,9 @@ body{
 
 .dropdown-items{
     list-style: none;
-    display: none;
+    display: grid;
+    grid-auto-rows: min-content;
+    place-items: stretch;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 200px;
@@ -73,8 +75,6 @@ body{
     color: hsl(var(--main-H), var(--main-S), var(--font-L));
 }
 
-.dropdown-wrapper:hover .dropdown-items {
-    display: grid;
-    grid-auto-rows: min-content;
-    place-items: stretch;
+.dropdown-items-invis{
+    display: none;
 }

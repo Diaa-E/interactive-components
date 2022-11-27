@@ -14,6 +14,7 @@ export function dropdown(options)
         wrapperClasses: ["dropdown-wrapper"],
         buttonClasses: ["dropdown-button"],
         listClasses: ["dropdown-items"],
+        listInvisibleClass: "dropdown-items-invis",
         listItemClasses: ["list-item"],
         addIndex: true,
         eventType: "click",
@@ -21,15 +22,25 @@ export function dropdown(options)
         ...options
     }
 
+    const listId = "listItems";
     const divWrapper = domUtility.createDomElement("div");
     domUtility.addClasses(divWrapper, options.wrapperClasses);
     domUtility.setElementAttributes(divWrapper, ["id"], [options.menuId]);
+    
+    divWrapper.addEventListener("mouseover", (e) => {
+        domUtility.removeClasses(document.querySelector(`#${listId}`), [options.listInvisibleClass])
+    });
+
+    divWrapper.addEventListener("mouseleave", (e) => {
+        domUtility.addClasses(document.querySelector(`#${listId}`), [options.listInvisibleClass])
+    });
 
     const btnDropdown = domUtility.createDomElement("button", options.menuTitle);
     domUtility.addClasses(btnDropdown, options.buttonClasses);
 
     const ulDropdownItems = domUtility.createDomElement("ul");
-    domUtility.addClasses(ulDropdownItems, options.listClasses);
+    domUtility.addClasses(ulDropdownItems, [options.listClasses, options.listInvisibleClass]);
+    domUtility.setElementAttributes(ulDropdownItems, ["id"], [listId])
 
     for (let i = 0; i < options.menuItems.length; i++)
     {
