@@ -63,12 +63,12 @@ body{
     border-bottom: 2px hsl(var(--main-H), var(--main-S), var(--main-hover-L)) solid;
 }*/
 
-.dropdown-items>li{
+.list-item{
     padding: 10px 5px;
     cursor: pointer;
 }
 
-.dropdown-items>li:hover{
+.list-item:hover{
     background-color: hsl(var(--main-H), var(--main-S), var(--main-hover-L));
     color: hsl(var(--main-H), var(--main-S), var(--font-L));
 }

@@ -4,9 +4,9 @@ import { dropdown } from "./dropdown";
 
 const body = document.querySelector("body");
 body.append(dropdown(
-    ...Array(8),
-    "click",
-    updateTitle,
+    {
+        eventFunction: updateTitle,
+    }
     ));
 
 function updateTitle(e){
