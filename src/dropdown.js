@@ -27,12 +27,12 @@ export function dropdown(options)
     domUtility.addClasses(divWrapper, options.wrapperClasses);
     domUtility.setElementAttributes(divWrapper, ["id"], [options.menuId]);
     
-    divWrapper.addEventListener("mouseover", (e) => {
-        domUtility.removeClasses(document.querySelector(`#${listId}`), [options.listInvisibleClass])
+    divWrapper.addEventListener("mouseover", () => {
+        domUtility.removeClasses(document.getElementById(listId), [options.listInvisibleClass])
     });
 
-    divWrapper.addEventListener("mouseleave", (e) => {
-        domUtility.addClasses(document.querySelector(`#${listId}`), [options.listInvisibleClass])
+    divWrapper.addEventListener("mouseleave", () => {
+        domUtility.addClasses(document.getElementById(listId), [options.listInvisibleClass])
     });
 
     const btnDropdown = domUtility.createDomElement("button", options.menuTitle);
