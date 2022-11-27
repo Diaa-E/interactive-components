@@ -8,8 +8,9 @@ export default {
     removeClasses    
 }
 
-function addClasses(element, ...cssClasses)
+function addClasses(element, cssClasses = [])
 {
+    if (cssClasses.length === 0) return
     cssClasses.forEach(cssClass => {
 
         element.classList.add(cssClass);
@@ -24,12 +25,12 @@ function createDomElement(elementTag = "div", elementInnerText = null)
     return newElement;
 };
 
-function setElementAttributes(element, ...attributesAndValues)
+function setElementAttributes(element, attributes = [], values = [])
 {
     //each attribute is passed as a string followed by its value
     for (let i = 0; i < attributesAndValues.length ; i++)
     {
-        element.setAttribute(attributesAndValues[i], attributesAndValues[++i]);
+        element.setAttribute(attributes[i], values[i]);
     }
 };
 
