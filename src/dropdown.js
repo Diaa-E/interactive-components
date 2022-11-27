@@ -12,6 +12,8 @@ export function dropdown(
     listClasses = [],
     listItemClasses = [],
     addIndex = false,
+    eventType = null,
+    eventFunction = () => {},
     )
 {
     const divWrapper = domUtility.createDomElement("div");
@@ -30,6 +32,9 @@ export function dropdown(
         domUtility.addClasses(liCurrentItem, listItemClasses);
 
         if (addIndex) domUtility.setElementAttributes(liCurrentItem, ["data-index"], [i]);
+        if (eventType !== null) liCurrentItem.addEventListener(eventType, (e) => {
+            eventFunction(e);
+        })
 
         ulDropdownItems.append(liCurrentItem);
     }

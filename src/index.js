@@ -12,4 +12,14 @@ body.append(dropdown(
     ["dropdown-items"],
     [],
     true,
+    "click",
+    updateTitle,
     ));
+
+function updateTitle(e){
+
+    const hIndex = document.createElement("h1");
+    hIndex.innerText = e.target.innerText;
+
+    body.append(hIndex);
+}
