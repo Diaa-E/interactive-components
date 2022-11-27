@@ -21,8 +21,7 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
-            filename: "[name].[hash].html"
+            template: 'src/index.html',
         }),
 
         // Add your plugins here
@@ -59,10 +58,12 @@ module.exports = () => {
         config.plugins.push(new MiniCssExtractPlugin({filename: "[name].[hash].css"}));
         config.optimization.minimizer.push(new CssMinimizerPlugin());
         config.optimization.minimizer.push(new TerserPlugin());
+        config.plugins[0].filename = "[name].[hash].html"; //causes an error when used in dev
         config.output.clean = true;
 
     } else {
         config.mode = 'development';
+        config.devtool = 'inline-source-map';
     }
     return config;
 };
