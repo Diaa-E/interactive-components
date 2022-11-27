@@ -6,13 +6,13 @@ import domUtility from "./dom.utility.js"
 export function dropdown(
     menuTitle = "Menu",
     menuId = "menu",
-    menuItems = [],
-    wrapperClasses = [],
-    buttonClasses = [],
-    listClasses = [],
+    menuItems = ["item 1", "item 2", "item 3", "item 4"],
+    wrapperClasses = ["dropdown-wrapper"],
+    buttonClasses = ["dropdown-button"],
+    listClasses = ["dropdown-items"],
     listItemClasses = [],
-    addIndex = false,
-    eventType = null,
+    addIndex = true,
+    eventType = "click",
     eventFunction = () => {},
     )
 {
@@ -32,7 +32,7 @@ export function dropdown(
         domUtility.addClasses(liCurrentItem, listItemClasses);
 
         if (addIndex) domUtility.setElementAttributes(liCurrentItem, ["data-index"], [i]);
-        if (eventType !== null) liCurrentItem.addEventListener(eventType, (e) => {
+        liCurrentItem.addEventListener(eventType, (e) => {
             eventFunction(e);
         })
 
