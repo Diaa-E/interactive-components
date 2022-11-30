@@ -1,6 +1,5 @@
 "use strict";
 
-import "./common.css";
 import "./dropdown.css";
 import domUtility from "./dom.utility.js"
 
