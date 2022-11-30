@@ -1,5 +1,6 @@
 "use strict";
 
+import "./common.css";
 import "./dropdown.css";
 import domUtility from "./dom.utility.js"
 
@@ -17,7 +18,7 @@ export function dropdown(options)
         listInvisibleClass: "dropdown-items-invis",
         listItemClasses: ["list-item"],
         addIndex: true,
-        onClick: true,
+        onClick: false,
         eventType: "click",
         eventFunction: () => {},
         ...options

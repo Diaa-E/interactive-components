@@ -1,31 +1,3 @@
-* {
-    appearance: none;
-    padding: 0;
-    margin: 0;
-    border: none;
-    box-sizing: border-box;
-    font-family: var(--font-family);
-}
-
-:root{
-    --main-H: 295;
-    --main-S: 36%;
-    --main-L: 55%;
-    --main-hover-L: 70%;
-    --main-active-L: 30%;
-    --font-L: 100%;
-
-    --dropdown-fontsize: 32px;
-    --font-family: sans-serif;
-}
-
-body{
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    place-content: center;
-}
-
 .dropdown-button{
     background-color: hsl(var(--main-H), var(--main-S), var(--main-L));
     padding: 10px;
