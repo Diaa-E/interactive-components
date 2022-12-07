@@ -1,0 +1,48 @@
+@import url(./common.css);
+
+:root{
+    --main-H: 295;
+    --main-S: 36%;
+    --main-L: 55%;
+    --main-hover-L: 70%;
+    --main-active-L: 30%;
+    --font-L: 100%;
+
+    --font-family: sans-serif;
+
+    --menu-height: 75px;
+}
+
+.menu-wrapper{
+    background-color: hsl(var(--main-H), var(--main-S), var(--main-L));
+    width: 100vw;
+    min-height: var(--menu-height);
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+}
+
+.items-container{
+    list-style: none;
+    display: flex;
+    place-content: space-evenly;
+}
+
+.menu-item{
+    display: flex;
+    place-items: center;
+    place-content: center;
+    width: var(--menu-height);
+    height: var(--menu-height);
+    border-bottom: 3px hsl(var(--main-H), var(--main-S), var(--main-active-L)) solid;
+    flex: 1 1 auto;
+}
+
+.menu-icon{
+    width: var(--menu-height);
+    filter: invert(100%);
+    cursor: pointer;
+    padding: 15px;
+}
+
+.menu-item-selected{
+    border-bottom: 3px hsl(var(--main-H), var(--main-S), var(--font-L)) solid;
+}

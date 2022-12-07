@@ -1,5 +1,9 @@
 @import url(./common.css);
 
+:root{
+    --dropdown-fontsize: 32px;
+}
+
 .dropdown-button{
     background-color: hsl(var(--main-H), var(--main-S), var(--main-L));
     padding: 10px;
