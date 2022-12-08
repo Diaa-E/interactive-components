@@ -37,6 +37,10 @@ export function tabMenu(options)
         //select first item
         if (i === 0) domUtility.addClasses(liMenuItem, options.itemSelectedClasses);
         if (options.addIndex) domUtility.setElementAttributes(liMenuItem, ["data-index"], [i]);
+        
+        liMenuItem.addEventListener(options.eventType, (e) => {
+            options.eventFunction(e);
+        })
 
         const imgIcon = new Image();
         imgIcon.src = options.menuIcons[i];
