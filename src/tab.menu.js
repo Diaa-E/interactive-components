@@ -44,6 +44,19 @@ export function tabMenu(options)
         ulItems.append(liMenuItem);
     }
 
+    if (options.menuItems.length > 4)
+    {
+        const liMenuItem = domUtility.createDomElement("li");
+        domUtility.addClasses(liMenuItem, options.itemClasses);
+
+        const imgIcon = new Image();
+        imgIcon.src = menuIcon;
+        domUtility.addClasses(imgIcon, options.menuIconsClasses);
+
+        liMenuItem.append(imgIcon);
+        ulItems.append(liMenuItem);
+    }
+
     divWrapper.append(ulItems);
 
     return divWrapper;
