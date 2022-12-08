@@ -57,7 +57,7 @@ export function tabMenu(options)
             menuItems: options.menuItems.slice(4),
             indexOffset: 4,
             onClick: true,
-            eventFunction: () => {},
+            eventFunction: options.eventFunction,
         }));
 
         ulItems.append(liMenuItem)
