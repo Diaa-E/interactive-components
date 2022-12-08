@@ -54,14 +54,7 @@ export function tabMenu(options)
             menuTitle: "More",
             menuId: "more",
             menuItems: options.menuItems.slice(4),
-            wrapperClasses: ["dropdown-wrapper"],
-            buttonClasses: ["dropdown-button"],
-            listClasses: ["dropdown-items"],
-            listInvisibleClass: "dropdown-items-invis",
-            listItemClasses: ["list-item"],
-            addIndex: true,
             onClick: true,
-            eventType: "click",
             eventFunction: () => {},
         }));
         ulItems.append(liMenuItem)
