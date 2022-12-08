@@ -1,10 +1,11 @@
 "use strict";
 
 import { dropdown } from "./dropdown";
-import "./tab.menu.css";
+import { tabMenu } from "./tab.menu";
 
-// const body = document.querySelector("body");
+const body = document.querySelector("body");
 // body.append(dropdown({eventFunction: updateTitle}));
+body.append(tabMenu());
 
 function updateTitle(e){
 
