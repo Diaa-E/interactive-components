@@ -4,6 +4,7 @@ import "./tab.menu.css";
 import domUtility from "./dom.utility";
 import defaultIcon from "./icons/item.svg";
 import menuIcon from "./icons/menu.svg";
+import { dropdown } from "./dropdown";
 
 export function tabMenu(options)
 {
@@ -49,12 +50,21 @@ export function tabMenu(options)
         const liMenuItem = domUtility.createDomElement("li");
         domUtility.addClasses(liMenuItem, options.itemClasses);
 
-        const imgIcon = new Image();
-        imgIcon.src = menuIcon;
-        domUtility.addClasses(imgIcon, options.menuIconsClasses);
-
-        liMenuItem.append(imgIcon);
-        ulItems.append(liMenuItem);
+        liMenuItem.append(dropdown({
+            menuTitle: "More",
+            menuId: "more",
+            menuItems: options.menuItems.slice(4),
+            wrapperClasses: ["dropdown-wrapper"],
+            buttonClasses: ["dropdown-button"],
+            listClasses: ["dropdown-items"],
+            listInvisibleClass: "dropdown-items-invis",
+            listItemClasses: ["list-item"],
+            addIndex: true,
+            onClick: true,
+            eventType: "click",
+            eventFunction: () => {},
+        }));
+        ulItems.append(liMenuItem)
     }
 
     divWrapper.append(ulItems);
