@@ -17,6 +17,7 @@ export function dropdown(options)
         listInvisibleClass: "dropdown-items-invis",
         listItemClasses: ["list-item"],
         addIndex: true,
+        indexOffset: 0,
         onClick: false,
         eventType: "click",
         eventFunction: () => {},
@@ -49,7 +50,8 @@ export function dropdown(options)
         const liCurrentItem = domUtility.createDomElement("li", options.menuItems[i]);
         domUtility.addClasses(liCurrentItem, options.listItemClasses);
 
-        if (options.addIndex) domUtility.setElementAttributes(liCurrentItem, ["data-index"], [i]);
+        //indexOffset allows for embeding this dropdown into another menu with an index of its own
+        if (options.addIndex) domUtility.setElementAttributes(liCurrentItem, ["data-index"], [i + options.indexOffset]);
         liCurrentItem.addEventListener(options.eventType, (e) => {
             options.eventFunction(e);
         })
