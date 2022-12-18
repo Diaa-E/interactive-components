@@ -39,6 +39,8 @@ export function slideShow(options)
     const divWrapper = domUtility.createDomElement("div");
     domUtility.addClasses(divWrapper, options.wrapperClasses);
 
+    const images  = [];
+
     for (let i = 0; i < options.images.length; i++)
     {
         const currentImage = new Image();
@@ -53,6 +55,7 @@ export function slideShow(options)
         }
 
         divWrapper.appendChild(currentImage);
+        images.push(currentImage);
     }
 
     const divCaption = domUtility.createDomElement("div");
@@ -80,11 +83,11 @@ export function slideShow(options)
     domUtility.addClasses(btnPrev, options.buttonClasses.prev);
 
     divWrapper.append(btnNext, btnPrev);
+
     return divWrapper
 
     function changeImage(increment, imageClasses)
     {
-        const images = document.querySelectorAll("#slideImage");
         currentImageIndex += increment;
     
         if (currentImageIndex >= images.length) currentImageIndex = 0;
@@ -96,5 +99,11 @@ export function slideShow(options)
         })
     
         domUtility.addClasses(images[currentImageIndex], imageClasses);
+        updateCaption(options.images[currentImageIndex].cap);
     };
+
+    function updateCaption(newCaption)
+    {
+        domUtility.setElementText(divCaption, newCaption);
+    }
 }
