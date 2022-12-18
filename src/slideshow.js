@@ -34,6 +34,8 @@ export function slideShow(options)
         ...options
     }
 
+    let currentImageIndex = 0;
+    
     const divWrapper = domUtility.createDomElement("div");
     domUtility.addClasses(divWrapper, options.wrapperClasses);
 
@@ -45,7 +47,7 @@ export function slideShow(options)
         domUtility.setElementAttributes(currentImage, ["id", "data-index"], ["slideImage", i]);
 
         //show first iamge by default
-        if (i === 0)
+        if (i === currentImageIndex)
         {
             domUtility.addClasses(currentImage, options.imageClasses);
         }
@@ -54,7 +56,7 @@ export function slideShow(options)
     }
 
     const divCaption = domUtility.createDomElement("div");
-    domUtility.setElementText(divCaption, options.images[0].cap);
+    domUtility.setElementText(divCaption, options.images[currentImageIndex].cap);
     domUtility.addClasses(divCaption, options.captionClasses);
     divWrapper.appendChild(divCaption);
 
@@ -63,16 +65,12 @@ export function slideShow(options)
 
     btnNext.addEventListener("click", (e) => {
 
-        const currentImageIndex = +document.querySelector(`.${options.imageClasses[0]}`).getAttribute("data-index");
-        
-        changeImage(currentImageIndex + 1, options.imageClasses);
+        changeImage(1, options.imageClasses);
     });
 
     btnPrev.addEventListener("click", (e) => {
 
-        const currentImageIndex = +document.querySelector(`.${options.imageClasses[0]}`).getAttribute("data-index");
-        
-        changeImage(currentImageIndex - 1, options.imageClasses);
+        changeImage(-1, options.imageClasses);
     })
 
     domUtility.setElementText(btnNext, "❯");
@@ -84,18 +82,19 @@ export function slideShow(options)
     divWrapper.append(btnNext, btnPrev);
     return divWrapper
 
-    function changeImage(index, imageClasses)
+    function changeImage(increment, imageClasses)
     {
         const images = document.querySelectorAll("#slideImage");
+        currentImageIndex += increment;
     
-        if (index >= images.length) index = 0;
-        if (index < 0) index = images.length - 1;
+        if (currentImageIndex >= images.length) currentImageIndex = 0;
+        if (currentImageIndex < 0) currentImageIndex = images.length - 1;
     
         images.forEach(image => {
     
             domUtility.removeClasses(image, imageClasses); //deactivate all images
         })
     
-        domUtility.addClasses(images[index], imageClasses);
+        domUtility.addClasses(images[currentImageIndex], imageClasses);
     };
 }
