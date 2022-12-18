@@ -46,7 +46,6 @@ export function slideShow(options)
         const currentImage = new Image();
         currentImage.src = options.images[i].src;
         domUtility.addClasses(currentImage, options.imageClassesFade);
-        domUtility.setElementAttributes(currentImage, ["id", "data-index"], ["slideImage", i]);
 
         //show first iamge by default
         if (i === currentImageIndex)
