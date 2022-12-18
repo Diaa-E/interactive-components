@@ -38,6 +38,7 @@ export function slideShow(options)
     }
 
     let currentImageIndex = 0;
+    let timeOut
     
     const divWrapper = domUtility.createDomElement("div");
     domUtility.addClasses(divWrapper, options.wrapperClasses);
@@ -104,10 +105,14 @@ export function slideShow(options)
 
     divWrapper.append(btnNext, btnPrev, divDotContainer);
 
+    //set it the first time because change image is called only by clicks
+    timeOut = setTimeout(changeImage, 5000, 1);
     return divWrapper
 
     function changeImage(increment)
     {
+        clearTimeout(timeOut);
+
         currentImageIndex += increment;
     
         if (currentImageIndex >= images.length) currentImageIndex = 0;
@@ -121,6 +126,8 @@ export function slideShow(options)
         domUtility.addClasses(images[currentImageIndex], options.imageClasses);
         updateCaption(options.images[currentImageIndex].cap);
         updateDots()
+
+        timeOut = setTimeout(changeImage, 5000, 1);
     };
 
     function updateCaption(newCaption)
