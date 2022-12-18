@@ -22,20 +22,20 @@
 .slideshow-wrapper img{
     grid-area: 1 / 1 / -1 / -1;
     width: 100%;
-    z-index: 0;
 }
 
 .prev, .next{
     background-color: rgba(0,0,0, 0);
     padding: 10px;
     font-size: 56px;
-    color: hsl( var(--main-H), var(--main-S), var(--main-L) );
+    color: hsl( var(--main-H), var(--main-S), var(--main-hover-L) );
     cursor: pointer;
+    transition: .5s ease;
     z-index: 9999;
 }
 
 .prev:hover, .next:hover{
-    background-color: hsla( var(--main-H), var(--main-S), var(--main-hover-L), 50% );
+    background-color: hsla( var(--main-H), var(--main-S), var(--main-active-L), 50% );
 }
 
 .prev{
@@ -44,4 +44,12 @@
 
 .next{
     grid-area: next;
+}
+
+.fade{
+    display: none;
+}
+
+.visible{
+    display: block;
 }

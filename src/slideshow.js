@@ -27,6 +27,8 @@ export function slideShow(options)
             next: ["next"],
             prev: ["prev"],
         },
+        imageClasses: ["visible"],
+        imageClassesFade: ["fade"],
         wrapperClasses: ["slideshow-wrapper"],
         ...options
     }
@@ -34,17 +36,38 @@ export function slideShow(options)
     const divWrapper = domUtility.createDomElement("div");
     domUtility.addClasses(divWrapper, options.wrapperClasses);
 
-    const images = [];
-
     for (let i = 0; i < options.images.length; i++)
     {
         const currentImage = new Image();
         currentImage.src = options.images[i].src;
-        images.push(currentImage);
+        domUtility.addClasses(currentImage, options.imageClassesFade);
+        domUtility.setElementAttributes(currentImage, ["id", "data-index"], ["slideImage", i]);
+
+        //show first iamge by default
+        if (i === 0)
+        {
+            domUtility.addClasses(currentImage, options.imageClasses);
+        }
+
+        divWrapper.appendChild(currentImage);
     }
 
     const btnNext = domUtility.createDomElement("button");
     const btnPrev = domUtility.createDomElement("button");
+
+    btnNext.addEventListener("click", (e) => {
+
+        const currentImageIndex = +document.querySelector(`.${options.imageClasses[0]}`).getAttribute("data-index");
+        
+        changeImage(currentImageIndex + 1, options.imageClasses);
+    });
+
+    btnPrev.addEventListener("click", (e) => {
+
+        const currentImageIndex = +document.querySelector(`.${options.imageClasses[0]}`).getAttribute("data-index");
+        
+        changeImage(currentImageIndex - 1, options.imageClasses);
+    })
 
     domUtility.setElementText(btnNext, "❯");
     domUtility.setElementText(btnPrev, "❮");
@@ -52,6 +75,21 @@ export function slideShow(options)
     domUtility.addClasses(btnNext, options.buttonClasses.next);
     domUtility.addClasses(btnPrev, options.buttonClasses.prev);
 
-    divWrapper.append(images[1], btnNext, btnPrev);
+    divWrapper.append(btnNext, btnPrev);
     return divWrapper
+}
+
+function changeImage(index, imageClasses)
+{
+    const images = document.querySelectorAll("#slideImage");
+
+    if (index >= images.length) index = 0;
+    if (index < 0) index = images.length - 1;
+
+    images.forEach(image => {
+
+        domUtility.removeClasses(image, imageClasses); //deactivate all images
+    })
+
+    domUtility.addClasses(images[index], imageClasses);
 }
