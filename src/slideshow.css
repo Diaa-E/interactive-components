@@ -1,15 +1,47 @@
 @import url("./common.css");
 
 :root{
-
+    --main-H: 295;
+    --main-S: 36%;
+    --main-L: 55%;
+    --main-hover-L: 70%;
+    --main-active-L: 30%;
+    --font-L: 100%;
+    --menu-height: 75px;
 }
 
 .slideshow-wrapper{
-    background-color: pink;
+    display: grid;
+    grid-template-areas: 
+        "prev . next"
+        "prev . next"
+        "prev title next";
     width: 100vw;
-    height: 300px;
 }
 
 .slideshow-wrapper img{
+    grid-area: 1 / 1 / -1 / -1;
     width: 100%;
+    z-index: 0;
+}
+
+.prev, .next{
+    background-color: rgba(0,0,0, 0);
+    padding: 10px;
+    font-size: 56px;
+    color: hsl( var(--main-H), var(--main-S), var(--main-L) );
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.prev:hover, .next:hover{
+    background-color: hsla( var(--main-H), var(--main-S), var(--main-hover-L), 50% );
+}
+
+.prev{
+    grid-area: prev;
+}
+
+.next{
+    grid-area: next;
 }

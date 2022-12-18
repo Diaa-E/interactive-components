@@ -23,6 +23,10 @@ export function slideShow(options)
                 cap: "default iamge 3"
             }
         ],
+        buttonClasses: {
+            next: ["next"],
+            prev: ["prev"],
+        },
         wrapperClasses: ["slideshow-wrapper"],
         ...options
     }
@@ -39,6 +43,15 @@ export function slideShow(options)
         images.push(currentImage);
     }
 
-    divWrapper.append(images[1]);
+    const btnNext = domUtility.createDomElement("button");
+    const btnPrev = domUtility.createDomElement("button");
+
+    domUtility.setElementText(btnNext, "❯");
+    domUtility.setElementText(btnPrev, "❮");
+
+    domUtility.addClasses(btnNext, options.buttonClasses.next);
+    domUtility.addClasses(btnPrev, options.buttonClasses.prev);
+
+    divWrapper.append(images[1], btnNext, btnPrev);
     return divWrapper
 }
