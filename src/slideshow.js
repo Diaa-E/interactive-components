@@ -30,6 +30,9 @@ export function slideShow(options)
         imageClasses: ["visible"],
         imageClassesFade: ["fade"],
         captionClasses: ["caption"],
+        dotContainerClasses: ["dot-container"],
+        dotClasses: ["dot"],
+        dotSelectedClasses: ["dot-selected"],
         wrapperClasses: ["slideshow-wrapper"],
         ...options
     }
@@ -40,6 +43,10 @@ export function slideShow(options)
     domUtility.addClasses(divWrapper, options.wrapperClasses);
 
     const images  = [];
+    const dots = [];
+
+    const divDotContainer = domUtility.createDomElement("div");
+    domUtility.addClasses(divDotContainer, options.dotContainerClasses);
 
     for (let i = 0; i < options.images.length; i++)
     {
@@ -47,14 +54,28 @@ export function slideShow(options)
         currentImage.src = options.images[i].src;
         domUtility.addClasses(currentImage, options.imageClassesFade);
 
+        const divDot = domUtility.createDomElement("div");
+        domUtility.addClasses(divDot, options.dotClasses);
+        domUtility.setElementAttributes(divDot, ["data-index"], [i]);
+
+        divDot.addEventListener("click", (e) => {
+
+            currentImageIndex = +e.target.getAttribute("data-index");
+            changeImage(0);
+        });
+
         //show first iamge by default
         if (i === currentImageIndex)
         {
             domUtility.addClasses(currentImage, options.imageClasses);
+            domUtility.addClasses(divDot, options.dotSelectedClasses);
         }
 
+        divDotContainer.appendChild(divDot)
         divWrapper.appendChild(currentImage);
+
         images.push(currentImage);
+        dots.push(divDot)
     }
 
     const divCaption = domUtility.createDomElement("div");
@@ -81,11 +102,11 @@ export function slideShow(options)
     domUtility.addClasses(btnNext, options.buttonClasses.next);
     domUtility.addClasses(btnPrev, options.buttonClasses.prev);
 
-    divWrapper.append(btnNext, btnPrev);
+    divWrapper.append(btnNext, btnPrev, divDotContainer);
 
     return divWrapper
 
-    function changeImage(increment, imageClasses)
+    function changeImage(increment)
     {
         currentImageIndex += increment;
     
@@ -94,15 +115,26 @@ export function slideShow(options)
     
         images.forEach(image => {
     
-            domUtility.removeClasses(image, imageClasses); //deactivate all images
+            domUtility.removeClasses(image, options.imageClasses); //deactivate all images
         })
     
-        domUtility.addClasses(images[currentImageIndex], imageClasses);
+        domUtility.addClasses(images[currentImageIndex], options.imageClasses);
         updateCaption(options.images[currentImageIndex].cap);
+        updateDots()
     };
 
     function updateCaption(newCaption)
     {
         domUtility.setElementText(divCaption, newCaption);
+    };
+
+    function updateDots()
+    {
+        dots.forEach(dot => {
+
+            domUtility.removeClasses(dot, options.dotSelectedClasses);
+        });
+
+        domUtility.addClasses(dots[currentImageIndex], options.dotSelectedClasses);
     }
 }

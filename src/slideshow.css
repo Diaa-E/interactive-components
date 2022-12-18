@@ -14,10 +14,32 @@
     display: grid;
     grid-template-columns: 1fr 15fr 1fr;
     grid-template-areas: 
+        "prev title next"
         "prev . next"
         "prev . next"
-        "prev title next";
+        "prev dots next";
     width: 100vw;
+}
+
+.dot-container{
+    display: flex;
+    grid-area: dots;
+    place-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.dot{
+    background-color: hsl( var(--main-H), var(--main-S), var(--main-hover-L));
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.dot-selected{
+    border: 5px hsl( var(--main-H), var(--main-S), var(--main-active-L)) solid;
 }
 
 .slideshow-wrapper img{
@@ -29,7 +51,7 @@
     background-color: rgba(0,0,0, 0);
     padding: 10px;
     font-size: 56px;
-    color: hsl( var(--main-H), var(--main-S), var(--main-hover-L) );
+    color: hsl( var(--main-H), var(--main-S), var(--main-hover-L));
     cursor: pointer;
     transition: .5s ease;
     z-index: 9999;
