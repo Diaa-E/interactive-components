@@ -29,6 +29,7 @@ export function slideShow(options)
         },
         imageClasses: ["visible"],
         imageClassesFade: ["fade"],
+        captionClasses: ["caption"],
         wrapperClasses: ["slideshow-wrapper"],
         ...options
     }
@@ -51,6 +52,11 @@ export function slideShow(options)
 
         divWrapper.appendChild(currentImage);
     }
+
+    const divCaption = domUtility.createDomElement("div");
+    domUtility.setElementText(divCaption, options.images[0].cap);
+    domUtility.addClasses(divCaption, options.captionClasses);
+    divWrapper.appendChild(divCaption);
 
     const btnNext = domUtility.createDomElement("button");
     const btnPrev = domUtility.createDomElement("button");
@@ -77,19 +83,19 @@ export function slideShow(options)
 
     divWrapper.append(btnNext, btnPrev);
     return divWrapper
-}
 
-function changeImage(index, imageClasses)
-{
-    const images = document.querySelectorAll("#slideImage");
-
-    if (index >= images.length) index = 0;
-    if (index < 0) index = images.length - 1;
-
-    images.forEach(image => {
-
-        domUtility.removeClasses(image, imageClasses); //deactivate all images
-    })
-
-    domUtility.addClasses(images[index], imageClasses);
+    function changeImage(index, imageClasses)
+    {
+        const images = document.querySelectorAll("#slideImage");
+    
+        if (index >= images.length) index = 0;
+        if (index < 0) index = images.length - 1;
+    
+        images.forEach(image => {
+    
+            domUtility.removeClasses(image, imageClasses); //deactivate all images
+        })
+    
+        domUtility.addClasses(images[index], imageClasses);
+    };
 }

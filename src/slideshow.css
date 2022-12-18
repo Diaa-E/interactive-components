@@ -12,6 +12,7 @@
 
 .slideshow-wrapper{
     display: grid;
+    grid-template-columns: 1fr 15fr 1fr;
     grid-template-areas: 
         "prev . next"
         "prev . next"
@@ -59,4 +60,14 @@
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+
+.caption{
+    grid-area: title;
+    font-size: 36px;
+    z-index: 9999;
+    text-align: center;
+    padding: 10px;
+    color: hsl( var(--main-H), var(--main-S), var(--main-hover-L));
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;;
 }
