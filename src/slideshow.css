@@ -69,5 +69,9 @@
     text-align: center;
     padding: 10px;
     color: hsl( var(--main-H), var(--main-S), var(--main-hover-L));
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;;
+    text-shadow: 
+    -1px -1px 5px hsla( var(--main-H), var(--main-S), var(--main-active-L), 75% ), 
+    1px -1px 5px hsla( var(--main-H), var(--main-S), var(--main-active-L), 75% ),
+    -1px 1px 5px hsla( var(--main-H), var(--main-S), var(--main-active-L), 75% ),
+    1px 1px 5px hsla( var(--main-H), var(--main-S), var(--main-active-L), 75% );
 }
