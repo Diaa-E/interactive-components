@@ -1,11 +1,11 @@
 "use strict";
 
 import { dropdown } from "./dropdown";
+import { slideShow } from "./slideshow";
 import { tabMenu } from "./tab.menu";
 
 const body = document.querySelector("body");
-// body.append(dropdown({eventFunction: updateTitle}));
-body.append(tabMenu());
+body.append(slideShow());
 
 function updateTitle(e){
 

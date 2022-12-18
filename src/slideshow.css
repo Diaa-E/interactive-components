@@ -1,0 +1,15 @@
+@import url("./common.css");
+
+:root{
+
+}
+
+.slideshow-wrapper{
+    background-color: pink;
+    width: 100vw;
+    height: 300px;
+}
+
+.slideshow-wrapper img{
+    width: 100%;
+}

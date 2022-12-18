@@ -3,9 +3,7 @@
 import "./tab.menu.css";
 import domUtility from "./dom.utility";
 import defaultIcon from "./icons/item.svg";
-import menuIcon from "./icons/menu.svg";
 import { dropdown } from "./dropdown";
-
 export function tabMenu(options)
 {
     options = {
